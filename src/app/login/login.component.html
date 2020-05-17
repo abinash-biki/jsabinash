@@ -1,0 +1,26 @@
+
+    <div class="col-md-4 offset-md-4 mt-4">
+        <h1>Login</h1>
+        <form #loginForm="ngForm" (ngSubmit) = "onClickSubmit(loginForm.value)">
+          <div class="form-group">
+            <label for="UserName">UserName</label>
+            <input type="UserName" name="UserName" id="UserName" 
+             required minlength='6' #UserName="ngModel"  ngModel class="form-control"  >
+             <div *ngIf='UserName.invalid && UserName.touched' class="alert alert-danger">
+               <div class="alert alert-danger" *ngIf='UserName.errors.required'>the field is mandatory</div>
+               <div class="alert alert-danger" *ngIf='UserName.errors.minlength'>the minimun length shuld be 6 </div>
+             </div>
+          </div>
+          <div class="form-group">
+            <label for="password">password</label>
+            <input type="password" minlength="6" name="password" id="password" 
+             required #password="ngModel"  ngModel class="form-control"  >
+             <div *ngIf='password.invalid && password.touched' class="alert alert-danger">
+              <div class="alert alert-danger" *ngIf='password.errors.required'>the field is mandatory</div>
+              <div class="alert alert-danger" *ngIf='password.errors.minlength'>minimun is is 6</div>
+            </div></div>
+          <button type="submit" class="btn btn-primary float-right" [disabled]='loginForm.invalid'>  Submit</button>
+        </form>
+      </div>
+    
+    

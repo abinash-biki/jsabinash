@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'banking';
+  isLogin:boolean = false; 
+   ngOnInit(){ 	
+        if(localStorage.getItem("isLogin")=="true") 	
+        	this.isLogin = true;
+   }
+  
 }

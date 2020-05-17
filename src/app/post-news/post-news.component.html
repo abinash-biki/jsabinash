@@ -1,0 +1,45 @@
+
+<div class="container">
+      <div class="col-md-4 offset-md-4 mt-4 mb-4">
+      <form #postNews="ngForm"(ngSubmit) = "onClickSubmit(postNews.value)">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="News">News Headline :</label>
+            <input type="text" class="form-control" name="News" id="News" pattern="^[A-Za-z\\s]{4,}[\\.]{0,1}[A-Za-z\\s]{0,}$" 
+              required #News="ngModel" ngModel />
+            <div *ngIf="News.invalid && News.touched">
+              <small class="text-danger" *ngIf="News.errors.required">
+                <i>headline  is required</i>
+              </small>
+              <small class="text-danger" *ngIf="News.errors.pattern">
+                <i>Head line contains alphabets only, and atleast 4 characters</i>
+              </small>
+            </div>
+          </div>
+        </div>
+      <div class="form-group">
+        <label for="newsDetails">Details* :</label>
+        <textarea class="form-control" name="newsDetails" id="newsDetails" rows="4" required
+          #newsDetails="ngModel" ngModel>
+        </textarea>
+        <div *ngIf= "newsDetails.invalid && newsDetails.touched">
+          <small class="text-danger"  *ngIf="newsDetails.errors.required">
+            <i> please write a news to post</i> 
+          </small>
+        </div>
+      </div>
+     
+      <br>
+      
+      <div class="form-group">
+          <button class="btn btn-primary float-left" type="submit" [disabled]="postNews.invalid">
+            Submit
+          </button>
+          <button class="btn btn-danger float-right" type="reset">
+            Reset
+          </button>
+      </div>
+      
+      </form>
+      </div>
+    </div>

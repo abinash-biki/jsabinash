@@ -1,0 +1,84 @@
+
+<div class="container">
+    <div class="col-md-4 offset-md-4 mt-2">
+        <h4>Fund Transfer</h4>
+        <hr>
+      </div>
+      <div class="col-md-4 offset-md-4 mt-4 mb-4">
+      <form #fundTransfer="ngForm">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="Name">To :</label>
+            <input type="text" class="form-control" name="fname" id="fname" pattern="^[A-Za-z\\s]{4,}[\\.]{0,1}[A-Za-z\\s]{0,}$" 
+              required #fname="ngModel" ngModel />
+            <div *ngIf="fname.invalid && fname.touched">
+              <small class="text-danger" *ngIf="fname.errors.required">
+                <i>name is required,please provide a name</i>
+              </small>
+              <small class="text-danger" *ngIf="fname.errors.pattern">
+                <i> please provide alphabets only, and atleast 4 characters</i>
+              </small>
+            </div>
+          </div> 
+        </div> 
+      
+      <div class="form-group">
+        <label for="accno">Account No* :</label>
+        <input type="text" name="accno" id="accno" class="form-control" required
+          minlength="13" maxlength="15" pattern="[0-9]+" #accno="ngModel" ngModel>
+          <div *ngIf="accno.invalid && accno.touched">
+            <small class="text-danger" *ngIf="accno.errors.minlength">
+              <i>This field accepts atleast 13 digits</i>
+            </small>
+            <small class="text-danger" *ngIf="accno.errors.required">
+              <i>This field is mandatory</i>
+            </small>
+            <small class="text-danger" *ngIf="accno.errors.maxlength">
+              <i>maximum length of this field is 15 digits</i>
+            </small>
+            <small class="text-danger" *ngIf="accno.errors.pattern">
+              <i>This field accepts number only</i>
+            </small>
+          </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="amount">Amount(in INR) :</label>
+          <input type="text" name="amount" id="amount" class="form-control" pattern="[0-9]+" required
+            #amount="ngModel" ngModel>
+          <div *ngIf="amount.invalid && amount.touched">
+            <small class="text-danger" *ngIf="amount.errors.required">
+              <i>This field is required</i>
+            </small>
+            <small class="text-danger" *ngIf="amount.errors.pattern">
+              <i>This field accepts number only</i>
+            </small>
+          </div>
+        </div>
+      </div>
+        <div class="col-md-6">
+            <label for="password">Password* :</label>
+            <input type="password" name="pwd" id="pwd" class="form-control" #pwd="ngModel" ngModel
+            required pattern="(?=^.{8,}$)((?=.\d)|(?=.\W+))(?![.\n])(?=.[A-Z])(?=.[a-z]).*$">
+            <div *ngIf="pwd.invalid && pwd.touched">
+              <small class="text-danger" *ngIf="pwd.errors.required">
+                <i>Password is required</i>
+              </small>
+              <small class="text-danger" *ngIf="pwd.errors.pattern">
+                <b>Suggest strong password</b> <br>
+                <i>password should contains atleast 8 charcters, one uppercase, lowercase, special symbol</i>
+              </small>
+            </div>
+          </div>
+      <br>
+      <div class="form-group">
+          <button class="btn btn-primary float-left" type="submit" [disabled]="fundTransfer.invalid">
+            Submit
+          </button>
+          <button class="btn btn-danger float-right" type="reset">
+            Reset
+          </button>
+      </div>
+      </form>
+      </div>
+    </div>

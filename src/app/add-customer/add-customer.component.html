@@ -1,0 +1,215 @@
+<div class="container">
+<div class="col-md-4 offset-md-4 mt-2">
+    <h4>Please fill in the following details. . . .</h4>
+    <hr>
+  </div>
+  <div class="col-md-4 offset-md-4 mt-4 mb-4">
+  <form #addCustomerForm="ngForm">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="First Name">First Name* :</label>
+        <input type="text" class="form-control" name="fname" id="fname" pattern="^[A-Za-z\\s]{4,}[\\.]{0,1}[A-Za-z\\s]{0,}$" 
+          required #fname="ngModel" ngModel />
+        <div *ngIf="fname.invalid && fname.touched">
+          <small class="text-danger" *ngIf="fname.errors.required">
+            <i>first name is required</i>
+          </small>
+          <small class="text-danger" *ngIf="fname.errors.pattern">
+            <i>firstname contains alphabets only, and atleast 4 characters</i>
+          </small>
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="Last Name">Last Name* :</label>
+        <input type="text" class="form-control" name="lname" id="lname" pattern="^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$" 
+          required #lname="ngModel" ngModel />
+        <div *ngIf="lname.invalid && lname.touched">
+          <small class="text-danger" *ngIf="lname.errors.required">
+            <i>Last name is required</i>
+          </small>
+          <small class="text-danger" *ngIf="lname.errors.pattern">
+            <i>Last name contains alphabets only</i>
+          </small>
+        </div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+    <div class="form-inline">
+      <label for="Gender">Gender :</label> &nbsp; &nbsp;
+      <input type="radio" name="gender" id="male" /> &nbsp;
+      <label for="male">Male</label> &nbsp; &nbsp;
+      <input type="radio" name="gender" id="female" /> &nbsp;
+      <label for="female">Female</label> &nbsp; &nbsp;
+      <input type="radio" name="gender" id="others"/> &nbsp;
+      <label for="others">Others</label> &nbsp; &nbsp;
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label for="Data of Birth">Date of Birth* :</label>
+    <input type="date" class="form-control" name="dob" id="dob" required #dob="ngModel" ngModel />
+    <div *ngIf= "dob.invalid && dob.touched">
+      <small class="text-danger" *ngIf="dob.errors.required">
+        <i>DOB is required</i>
+      </small>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label for="Aadhar">Aadhar No* :</label>
+    <input type="text" class="form-control" pattern="[0-9]{12}" maxlength="12" required
+       name="aadhar" id="aadhar" #aadhar="ngModel" ngModel />
+      <div *ngIf= "aadhar.invalid && aadhar.touched">
+        <small class="text-danger" *ngIf="aadhar.errors.pattern">
+          <i>This field accepts 12 digits ony</i>
+        </small>
+        <small class="text-danger" *ngIf="aadhar.errors.required">
+          <i>This field is mandatory</i>
+        </small>
+      </div>
+  </div>
+  
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label for="Email">Email* :</label>
+      <input type="email" class="form-control" required email name="emaiId" id="emailId" #emailId='ngModel' ngModel />
+      <div *ngIf= "emailId.invalid && emailId.touched">
+        <small class="text-danger"  *ngIf="emailId.errors.required">
+           <i>email-id is manadatory</i>
+        </small>
+        <small class="text-danger"  *ngIf="emailId.errors.email">
+          <i>This field accepts email only</i>
+       </small>
+      </div>
+    </div>
+  
+    <div class="form-group col-md-6">
+      <label for="Phone number">Phone No* :</label>
+      <input type="tel" class="form-control" pattern="[6-9]{1}[0-9]{9}" required
+         name="phoneNo" id="phoneNo" #phoneNo='ngModel' ngModel />
+         <div *ngIf= "phoneNo.invalid && phoneNo.touched">
+           <small class="text-danger"  *ngIf="phoneNo.errors.required">
+              <i>phone number is required</i>
+           </small>
+           <small class="text-danger"  *ngIf="phoneNo.errors.pattern">
+            <i>phone number starts with 6-9 and contains 10 digits</i>  
+         </small>
+         </div>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label for="address">Address* :</label>
+    <textarea class="form-control" name="address" id="address" rows="4" required
+      #address="ngModel" ngModel>
+    </textarea>
+    <div *ngIf= "address.invalid && address.touched">
+      <small class="text-danger"  *ngIf="address.errors.required">
+        <i>address is required</i> 
+      </small>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <div class="form-inline">
+    <label for="branch">Bank Branch :</label> &nbsp; &nbsp;
+      <select class="custom-select" name="branch" id="branch" required #branch='ngModel' ngModel>
+        <option value="default">Choose your branch</option>
+        <option value="India">India</option>
+        <option value="New York">New York</option>
+      </select> 
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label for="accno">Account No* :</label>
+    <input type="text" name="accno" id="accno" class="form-control" required
+      minlength="13" maxlength="15" pattern="[0-9]+" #accno="ngModel" ngModel>
+      <div *ngIf="accno.invalid && accno.touched">
+        <small class="text-danger" *ngIf="accno.errors.minlength">
+          <i>This field accepts atleast 13 digits</i>
+        </small>
+        <small class="text-danger" *ngIf="accno.errors.required">
+          <i>This field is mandatory</i>
+        </small>
+        <small class="text-danger" *ngIf="accno.errors.maxlength">
+          <i>maximum length of this field is 15 digits</i>
+        </small>
+        <small class="text-danger" *ngIf="accno.errors.pattern">
+          <i>This field accepts number only</i>
+        </small>
+      </div>
+  </div>
+  
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label for="balance">Opening balance* :</label>
+      <input type="text" name="balance" id="balance" class="form-control" pattern="[0-9]+" required
+        #balance="ngModel" ngModel>
+      <div *ngIf="balance.invalid && balance.touched">
+        <small class="text-danger" *ngIf="balance.errors.required">
+          <i>This field is required</i>
+        </small>
+        <small class="text-danger" *ngIf="balance.errors.pattern">
+          <i>This field accepts number only</i>
+        </small>
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="pin">Pin(4 digit)* :</label>
+      <input type="text" class="form-control" name="pin" id="pin" maxlength="4" required pattern="^[0-9]{4}$" 
+        #pin="ngModel" ngModel>
+      <div *ngIf="pin.invalid && pin.touched">
+        <small class="text-danger" *ngIf="pin.errors.required">
+          <i>pin is required</i>
+        </small>
+        <small class="text-danger" *ngIf="pin.errors.pattern">
+          <i>pin accepts number and 4 digits only</i>
+        </small>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-6">
+      <label for="uname">Username* :</label>
+      <input type="text" name="uname" id="uname" class="form-control" required
+        #uname="ngModel" ngModel>
+      <div *ngIf="uname.invalid && uname.touched">
+        <small class="text-danger" *ngIf="uname.errors.required">
+          <i>Username is required</i>
+        </small>
+      </div>
+    </div>
+  
+    <div class="col-md-6">
+      <label for="password">Password* :</label>
+      <input type="password" name="pwd" id="pwd" class="form-control" #pwd="ngModel" ngModel
+      required pattern="(?=^.{8,}$)((?=.\d)|(?=.\W+))(?![.\n])(?=.[A-Z])(?=.[a-z]).*$">
+      <div *ngIf="pwd.invalid && pwd.touched">
+        <small class="text-danger" *ngIf="pwd.errors.required">
+          <i>Password is required</i>
+        </small>
+        <small class="text-danger" *ngIf="pwd.errors.pattern">
+          <b>Suggest strong password</b> <br>
+          <i>password should contains atleast 8 charcters, one uppercase, lowercase, special symbol</i>
+        </small>
+      </div>
+    </div>
+  </div>
+  
+  <br>
+  
+  <div class="form-group">
+      <button class="btn btn-primary float-left" type="submit" [disabled]="addCustomerForm.invalid">
+        Submit
+      </button>
+      <button class="btn btn-danger float-right" type="reset">
+        Reset
+      </button>
+  </div>
+  
+  </form>
+  </div>
+</div>
